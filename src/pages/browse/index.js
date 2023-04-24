@@ -18,7 +18,6 @@ export default function Browse() {
     }, [])
 
     console.log("dentro: ", topMovies)
-    // let movie = topMovies[0]
 
 
 

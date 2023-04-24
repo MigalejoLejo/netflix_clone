@@ -10,8 +10,9 @@ async function FetchTop10() {
         return jsonData
     }
     catch (err) {
-         console.log("ERROR GRANDE", err)
+        console.log("ERROR GRANDE", err)
     }
 }
+
 
 export default FetchTop10 
