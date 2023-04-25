@@ -3,11 +3,13 @@ import N_logo from "../../public/images/N_logo.svg"
 import Top10 from "../../public/images/Top10.svg"
 import Polygon1 from "../../public/images/Polygon1.svg"
 import Info_btn from "../../public/images/Info_btn.svg"
+import Genres from "../components/genres"
 
 
 
 
 const FocusView = ({type, movie}) => {
+    
     
     return (
         <div
@@ -18,14 +20,17 @@ const FocusView = ({type, movie}) => {
             <div className='absolute w-full h-[200px] bg-gradient-to-t from-black bottom-0'>
             </div>
 
+
             {/* Contenido del focusView */}
             <div className="ml-9 absolute bottom-5 w-[600px] h-[400px]">
+
 
                 {/* content type */}
                 <div className="flex flex-row gap-5 -ml-2 items-center">
                     <N_logo className="scale-50" />
                     <h2 className="text-xl tracking-[0.75rem]">{type}</h2>
                 </div>
+
 
                 {/* Title */}
                 <div>
@@ -34,11 +39,13 @@ const FocusView = ({type, movie}) => {
                     </h2>
                 </div>
 
+
                 {/* top 10 */}
                 <div className='flex items-center -ml-2 mb-3 '>
                     <Top10 className="scale-50" />
                     <h3 className='text-l font-semibold'>In top 10 movies today</h3>
                 </div>
+
 
                 {/* description */}
                 <div>
@@ -46,6 +53,13 @@ const FocusView = ({type, movie}) => {
                         {movie?.overview}
                     </h2>
                 </div>
+
+
+                {/*Genres*/}
+                <div className="font-semibold pl-10 pt-3 pb-3 flex ">
+                    <Genres genres = {movie?.genres}/>
+                </div>
+
 
                 {/*buttons*/}
                 <div className='flex gap-2 mt-3'>

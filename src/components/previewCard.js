@@ -1,11 +1,24 @@
+import { useEffect, useState } from "react"
 import N_logo from "../../public/images/N_logo.svg"
+import GetMovieDetails from "../services/getMovieDetails"
+import Genres from "../components/genres"
 
 
-const FocusView = ({ movie }) => {
+const FocusView = ({ movie, setMovieDetails }) => {
+
+    const [cardMovieDetails, setCardMovieDetails] = useState([])
+
+    useEffect(() => {
+        GetMovieDetails(movie).then(res => setCardMovieDetails(res))
+    }, [])
+    const genres = cardMovieDetails?.genres
+    console.log("card movie details outside: ", genres)
+
+
 
     return (
 
-        <div >
+        <div onClick={()=>(setMovieDetails(cardMovieDetails))} >
             <div
                 style={{ "--imageUrl": `url(https://image.tmdb.org/t/p/original${movie?.backdrop_path})` }}
                 className="flex flex-col justify-between w-72 h-40 bg-[image:var(--imageUrl)] bg-cover">
@@ -22,7 +35,10 @@ const FocusView = ({ movie }) => {
                     <p >{movie?.title}</p>
 
                     {/* Genero */}
-                    <p className="ml-auto mr-0 text-xs" >{movie?.popularity}</p>
+                    <p className="ml-auto mr-0 text-xs">
+                        <Genres genres={genres} />
+                    </p >
+
                 </div>
 
 
