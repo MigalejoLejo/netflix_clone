@@ -1,24 +1,41 @@
 
+import { useEffect, useState } from "react"
 import PreviewCard from "../components/previewCard"
+import FetchContent from "@/services/fetchContent"
 
 
-const CardList = ({ movies, listTitle, setMovieDetails}) => {
 
-    let MOVIES = { movies }.movies
+function CardList({ type, category, setContentDetails, setType, setCategory }) {
 
-    return (
-        <div className="flex flex-col pl-5 w-full h-72  overflow-x-scroll overflow-y-visible scrollbar-hide">
-            <h2 className="text-xl mb-4 mt-2 font-semibold">{listTitle}</h2>
-            <div className="flex flex-row gap-3 mb-6">
-                {MOVIES.map((movie) => (
-                    <div key={movie.id}>
-                        <PreviewCard movie={movie} setMovieDetails = {setMovieDetails} />
-                    </div>
-                ))}
+    const [contentList, setContentList] = useState (()=>[])
+      
+    useEffect(() => {
+        FetchContent(type, category).then(res => setContentList(res.results))
+        console.log("contentList: ", contentList)
+    }, [])
+    
+    try {
+        return (
+
+
+            <div className="pl-5 mt-10 w-full overflow-x-scroll overflow-y-visible scrollbar-hide">
+                <h2 className="absolute text-xl font-semibold">{category}</h2>
+                <div className="mt-10 flex flex-row gap-3 ">
+
+                    { contentList.map((content) => (
+                        <div key={content.id}>
+                            <PreviewCard content={content} type={type} category={category} setContentDetails={setContentDetails} setType={setType} setCategory={setCategory} />
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
-    )
 
+        )
+    } catch (err) {
+        return (
+            <div>error</div>
+        )
+    }
 
 }
 

@@ -2,9 +2,9 @@
  function Genres ({genres}){
 
     return (
-        <span  >
+        <span className="flex gap-3"  >
             {genres?.map((genre) => (
-               <span key={genre.id}> {genre.name}</span> 
+               <span key={genre.id}> {genre.name}  </span> 
             )
                
             )}
