@@ -1,40 +1,42 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import Link from "next/link"
-import NetflixLogo from "../../public/images/NetflixLogo.svg"
-
+import { useState, useEffect } from 'react'
+import { LogIn } from './login'
+import SelectUser from './browse/selectUser'
+import { auth } from "../services/firebase";
 
 const inter = Inter({ subsets: ['latin'] })
 
+
+
 export default function Home() {
+
+  const [user, setUser] = useState()
+
+
+  useEffect(() => {
+    const subscriber = auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log("user at login: ",user)
+        setUser(user)
+      } else {
+        console.log("no user loged in at loginscreen")
+      }
+    })
+    return subscriber
+  }, [])
+
+
   return (
-    <main className="bg-black w-screen h-screen flex flex-col items-center justify-center">
-      <NetflixLogo className="mb-20"/>
-      <h1 className="text-3xl font-semibold text-white text-2xl mb-3">
-        Who's watching?
-      </h1>
+    <div>
+      {user ?
+        <SelectUser />
+        : 
+        <LogIn/>
+        }
 
-      <div className="flex flex-row gap-3 mt-6">
-        {USERS.map((user, index) => (
-          <div key={index} className="flex flex-col items-center justify-center">
-            <div className="rounded-md bg-gray-200 w-[128px] h-[128px] ">
-              <Link key={user.name} href={user.link}>
-                <Image src={user.avatar} width={128} height={128} alt="" />
-                <p className="text-white text-xs text-center mt-3">
-                  {user.name}
-                </p>
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
-    </main>
+
+    </div>
+
   )
-}
 
-const USERS = [
-  { name: "Felix", avatar: "https://api.dicebear.com/6.x/personas/svg?seed=Felix", link: "/browse" },
-  { name: "Aneka", avatar: "https://api.dicebear.com/6.x/personas/svg?seed=Aneka", link: "/browse" },
-  { name: "Matias", avatar: "https://api.dicebear.com/6.x/personas/svg?seed=Matias", link: "/browse" },
-  { name: "Add Profile", avatar: "https://api.dicebear.com/6.x/icons/svg?icon=plug", link: "/browse" },
-]
+}

@@ -7,7 +7,9 @@ async function FetchPopularMovies() {
     try {
         const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`)
         const jsonData = await response.json()
-        return jsonData
+        const result = jsonData.results
+        console.log("Response of fetchpopularmovies", result)
+        return result
     }
     catch (err) {
         console.log("ERROR GRANDE", err)
