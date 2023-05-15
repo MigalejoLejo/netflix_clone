@@ -68,8 +68,10 @@ export function LogIn() {
                         //     offset: 30,
                         //     animationType: "slide-in",
                         // });
-                        console.log(error)
+                        console.log("there was an error", error)
                         return error;
+                    } else {
+                        console.log("unknown error: ", error)
                     }
                 });
         }
@@ -183,7 +185,7 @@ export function LogIn() {
                     <div className={`flex flex-col gap-3 mt-8 w-full items-center`}>
                         <Link
                             href={"../signup"}
-                            onClick={() => (LogInUser)}>
+                            onClick={() => console.log("hi there")}>
                             <div className={`flex flex-row gap-2 mt-10 w-full`}>
                                 <p className={`text-white text-lg`}> New to Netflix clone? </p>
                                 <p className={`text-red-500 text-lg `}>Sign Up!</p>
