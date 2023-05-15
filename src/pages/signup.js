@@ -3,7 +3,6 @@ import { useState, useEffect } from "react"
 
 import NetflixLogo from "../../public/images/NetflixLogo.svg"
 import Link from "next/link"
-import { redirect } from "react-router-dom";
 import { auth } from "../services/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import SelectUser from "./browse/selectUser";
@@ -134,9 +133,7 @@ function SignUp() {
     // RETURN 
     // =========================================================================
     return (
-        <div>
-            {!user ?
-
+    
                 <div className={`flex flex-col bg-black h-screen justify-center items-center`}>
 
                     {/* Netflix Logo */}
@@ -206,10 +203,7 @@ function SignUp() {
                         </div>
                     </div>
                 </div>
-                :
-                <SelectUser />
-            }
-        </div>
+             
     )
 }
 

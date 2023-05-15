@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 import Link from "next/link"
 import NetflixLogo from "../../../public/images/NetflixLogo.svg"
 import { auth } from "../../services/firebase";
-import { LogIn } from '../login';
 import { useEffect, useState } from 'react';
 import Home from '..';
 
@@ -47,10 +46,7 @@ export default function SelectUser({ }) {
 
     return (
 
-        <div>
-
-            {user?
-
+      
                 <main className="bg-black w-screen h-screen flex flex-col items-center justify-center">
                     <NetflixLogo className="mb-20" />
                     <h1 className="text-3xl font-semibold text-white text-2xl mb-3">
@@ -77,11 +73,7 @@ export default function SelectUser({ }) {
                     <p onClick={()=>logOut()} className='absolute top-0 right-0 m-5 text-red-600 text-lg font-semibold cursor-pointer'>Log Out</p>
 
                 </main>
-                :
-                <Home />
-
-            }
-        </div>
+              
     )
 }
 

@@ -106,8 +106,7 @@ export default function Browse() {
     };
 
     return (
-        <div>
-            {isLoggedOn?
+     
                 <div className=" text-white w-full h-full flex flex-col bg-black">
                     <Header userName={user.displayName} userPicture={user.photoURL} />
                     <FocusView type={type} content={contentDetails} />
@@ -118,10 +117,7 @@ export default function Browse() {
                     <Test x={x} setX={setX} />
 
                 </div>
-                :
-                <LogIn />
-            }
-        </div>
+            
 
     )
 }

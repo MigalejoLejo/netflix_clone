@@ -1,7 +1,6 @@
 import { Inter } from 'next/font/google'
 import { useState, useEffect } from 'react'
-import { LogIn } from './login'
-import SelectUser from './browse/selectUser'
+import { LogIn } from './login';
 import { auth } from "../services/firebase";
 
 const inter = Inter({ subsets: ['latin'] })
@@ -27,15 +26,9 @@ export default function Home() {
 
 
   return (
-    <div>
-      {user ?
-        <SelectUser />
-        : 
+    
         <LogIn/>
-        }
-
-
-    </div>
+      
 
   )
 
