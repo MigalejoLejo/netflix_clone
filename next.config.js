@@ -5,7 +5,7 @@ dotenv.config();
 const nextConfig = {
 
   env:{
-    apiKey: process.env.apiKey,
+    apiKey: process.env.API_KEY,
     authDomain: process.env.authDomain,
     projectId: process.env.projectId,
     storageBucket: process.env.storageBucket,
