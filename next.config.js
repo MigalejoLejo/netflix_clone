@@ -1,5 +1,19 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
+  env:{
+    apiKey: process.env.apiKey,
+    authDomain: process.env.authDomain,
+    projectId: process.env.projectId,
+    storageBucket: process.env.storageBucket,
+    messagingSenderId:process.env.messagingSenderId,
+    appId: process.env.appId,
+    measurementId: process.env.measurementId
+  },
+
   reactStrictMode: true,
   images: {
     dangerouslyAllowSVG:true,
